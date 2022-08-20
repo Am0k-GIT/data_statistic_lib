@@ -1,0 +1,19 @@
+{
+  "name": "data_statistic",
+  "keywords": "data statistic, buffer, ring buffer",
+  "description": "Library for data collection and processing",
+  "authors":
+  [
+    {
+      "name": "Pavel Kolesov"
+    }
+  ],
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/Am0k-GIT/data_statistic_lib"
+  },
+  "version": "1.0.0",
+  "frameworks": "arduino",
+  "platforms": "avr"
+}
