@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/Am0k-GIT/data_statistic_lib"
   },
-  "version": "1.0.0",
+  "version": "1.1.0",
   "frameworks": "arduino",
   "platforms": "avr"
 }

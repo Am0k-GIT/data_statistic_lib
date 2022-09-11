@@ -3,15 +3,15 @@
 #include <stdint.h>
 
 //*****************************************************************************
-//******************** Базовые функции работы с данными ***********************
+//******************** Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РґР°РЅРЅС‹РјРё ***************************
 template <typename T>
-void swapValues(T& a, T& b);                                                   // меняет местами значения
+void swapValues(T& a, T& b);                                                    // Р¤СѓРЅРєС†РёСЏ Р·Р°РјРµРЅС‹ Р·РЅР°С‡РµРЅРёР№ РјРµСЃС‚Р°РјРё
 
 template <typename T>
-bool ascending(T a, T b);                                                      // параметр сортировки по возрастанию
+bool ascending(T a, T b);                                                       // Р¤СѓРЅРєС†РёСЏ СЃСЂР°РІРЅРµРЅРёСЏ Р±РѕР»СЊС€РµРіРѕ СЃ РјРµРЅСЊС€РёРј
 
 template <typename T>
-bool descending(T a, T b);                                                     // параметр сортировки по убыванию
+bool descending(T a, T b);                                                      // Р¤СѓРЅРєС†РёСЏ СЃСЂР°РІРЅРµРЅРёСЏ РјРµРЅСЊС€РµРіРѕ СЃ Р±РѕР»СЊС€РёРј
 
 template <typename T>
 void swapValues(T& a, T& b)
@@ -36,38 +36,38 @@ bool descending(T a, T b)
 //*****************************************************************************
 
 //*****************************************************************************
-//******************** Базовые функции работы с массивами *********************
-template <typename T>
-void copyArray(T* array, T* copy, uint16_t length);                            // создание копии массива
+//******************** Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РјР°СЃСЃРёРІР°РјРё *************************
+template <typename T, typename S>
+void copyArray(T* array, T* copy, S length);                                    // РљРѕРїРёСЂРѕРІР°РЅРёРµ РјР°СЃСЃРёРІР°
 
-template <typename T>
-void sortArray(T* array, uint16_t length, bool (*comparisonFcn)(T, T));        // сортировка массива
+template <typename T, typename S>
+void sortArray(T* array, S length, bool (*comparisonFcn)(T, T));                // РЎРѕСЂС‚РёСЂРѕРІРєР° РјР°СЃСЃРёРІР°
 
-template <typename T>
-double averageValue(T* array, uint16_t length);                                // нахождение усредненного значения в массиве
+template <typename T, typename S>
+double averageValue(T* array, S length);                                        // РЎСЂРµРґРЅРµРµ Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРµ РІ РјР°СЃСЃРёРІРµ
 
-template <typename T>
-double medianValue(T* array, uint16_t length);                                 // нахождение медианного значения в массиве
+template <typename T, typename S>
+double medianValue(T* array, S length);                                         // РњРµРґРёР°РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РјР°СЃСЃРёРІРµ
 
-template <typename T>
-double filterValue(T* array, uint16_t length, double (*referenceFcn)(T* array, uint16_t length), uint16_t maxDiffPercent);
-                                                                               // нахождение отфильтрованного значения
-template <typename T>
-void copyArray(T* array, T* copy, uint16_t length)
+template <typename T, typename S>
+double filterValue(T* array, S length, double (*referenceFcn)(T* array, S length), uint8_t maxDiffPercent);
+                                                                                // РћС‚С„РёР»СЊС‚СЂРѕРІР°РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ СЃ РѕС‚Р±СЂР°СЃС‹РІР°РЅРёРµРј РЅР°РёР±РѕР»РµРµ РѕС‚РєР»РѕРЅРµРЅРЅС‹С…
+template <typename T, typename S>
+void copyArray(T* array, T* copy, S length)
 {
-	for (uint16_t currentIndex = 0; currentIndex < length; currentIndex++)
+	for (S currentIndex = 0; currentIndex < length; currentIndex++)
 	{
 		copy[currentIndex] = array[currentIndex];
 	}
 }
 
-template <typename T>
-void sortArray(T* array, uint16_t length, bool (*comparisonFcn)(T, T))
+template <typename T, typename S>
+void sortArray(T* array, S length, bool (*comparisonFcn)(T, T))
 {
-	for (uint16_t startIndex = 0; startIndex < length; ++startIndex)
+	for (S startIndex = 0; startIndex < length; ++startIndex)
 	{
-		uint16_t bestIndex = startIndex;
-		for (uint16_t currentIndex = startIndex + 1; currentIndex < length; ++currentIndex)
+		S bestIndex = startIndex;
+		for (S currentIndex = startIndex + 1; currentIndex < length; ++currentIndex)
 		{
 			if (comparisonFcn(array[bestIndex], array[currentIndex]))
 				bestIndex = currentIndex;
@@ -76,24 +76,24 @@ void sortArray(T* array, uint16_t length, bool (*comparisonFcn)(T, T))
 	}
 }
 
-template <typename T>
-double averageValue(T* array, uint16_t length)
+template <typename T, typename S>
+double averageValue(T* array, S length)
 {
 	double average = 0;
-	for (uint16_t currentIndex = 0; currentIndex < length; currentIndex++)
+	for (S currentIndex = 0; currentIndex < length; currentIndex++)
 	{
 		average += array[currentIndex];
 	}
 	return (average / length);
 }
 
-template <typename T>
-double medianValue(T* array, uint16_t length)
+template <typename T, typename S>
+double medianValue(T* array, S length)
 {
 	double diffValue = 0;
 	double newDiffValue = 0;
-	uint16_t currentIndex = length / 2;
-	uint16_t medianIndex = currentIndex;
+	S currentIndex = length / 2;
+	S medianIndex = currentIndex;
 	if (length < 3)
 	{
 		return averageValue(array, length);
@@ -108,11 +108,11 @@ double medianValue(T* array, uint16_t length)
 		{
 			double leftSum = 0;
 			double rightSum = 0;
-			for (uint16_t leftIndex = 0; leftIndex < currentIndex; leftIndex++)
+			for (S leftIndex = 0; leftIndex < currentIndex; leftIndex++)
 			{
 				leftSum += copy[currentIndex] - copy[leftIndex];
 			}
-			for (uint16_t rightIndex = currentIndex + 1; rightIndex < length; rightIndex++)
+			for (S rightIndex = currentIndex + 1; rightIndex < length; rightIndex++)
 			{
 				rightSum += copy[rightIndex] - copy[currentIndex];
 			}
@@ -165,13 +165,13 @@ double medianValue(T* array, uint16_t length)
 	}
 }
 
-template <typename T>
-double filterValue(T* array, uint16_t length, double (*referenceFcn)(T* array, uint16_t length), uint16_t maxDiffPercent)
+template <typename T, typename S>
+double filterValue(T* array, S length, double (*referenceFcn)(T* array, S length), uint8_t maxDiffPercent)
 {
 	double summ = 0;
-	uint16_t members = 0;
+	S members = 0;
 	double referenceData = referenceFcn(array, length);
-	for (uint16_t currentIndex = 0; currentIndex < length; currentIndex++)
+	for (S currentIndex = 0; currentIndex < length; currentIndex++)
 	{
 		double diff = abs(array[currentIndex] - referenceData);
 		if (diff < referenceData * maxDiffPercent / 100)
@@ -189,45 +189,45 @@ double filterValue(T* array, uint16_t length, double (*referenceFcn)(T* array, u
 //*****************************************************************************
 
 //*****************************************************************************
-//********************* Кольцевой буфер ***************************************
-template <typename T>
+//********************* РљРѕР»СЊС†РµРІРѕР№ Р±СѓС„С„РµСЂ **************************************
+template <typename T, typename S>
 class RingBuffer {
 
 private:
 
-	uint16_t m_size = 0;
-	uint16_t m_index = 0;
+	S m_size = 0;
+	S m_index = 0;
 	bool m_full = false;
 	T* m_array;
 
 public:
 
-	RingBuffer(uint16_t size)                                                  // конструктор
+	RingBuffer(S size)                                                          // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	{
 		m_size = size;
 		m_array = new T[m_size];
 	}
 
-	~RingBuffer()                                                              // деструктор
+	~RingBuffer()                                                               // Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 	{
 		delete[] m_array;
 	}
 
-	RingBuffer(const RingBuffer& source)                                       // конструктор копирования
+	RingBuffer(const RingBuffer& source)                                        // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 	{
 		m_size = source.m_size;
 		m_index = source.m_index;
 		if (source.m_array)
 		{
 			m_array = new T[m_size];
-			for (uint16_t i = 0; i < m_size; ++i)
+			for (S i = 0; i < m_size; ++i)
 				m_array[i] = source.m_array[i];
 		}
 		else
 			m_array = 0;
 	}
 
-	RingBuffer& operator=(const RingBuffer& source)                            // перегрузка оператора =
+	RingBuffer& operator=(const RingBuffer& source)                             // РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° =
 	{
 		if (this == &source)
 			return *this;
@@ -237,7 +237,7 @@ public:
 		if (source.m_array)
 		{
 			m_array = new T[m_size];
-			for (uint16_t i = 0; i < m_size; ++i)
+			for (S i = 0; i < m_size; ++i)
 				m_array[i] = source.m_array[i];
 		}
 		else
@@ -245,12 +245,12 @@ public:
 		return *this;
 	}
 
-	T& operator[] (const uint16_t index)                                       // перегрузка оператора []
+	T& operator[] (const S index)                                               // РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° []
 	{
 		return m_array[index];
 	}
 
-	uint16_t getIndex()                                                       // получение последнего записанного индекса в стеке
+	S getIndex()                                                                // РџРѕР»СѓС‡РµРЅРёРµ С‚РµРєСѓС‰РµРіРѕ РёРЅРґРµРєСЃР°
 	{
 		if (m_array)
 		{
@@ -263,17 +263,17 @@ public:
 			return 0;
 	}
 
-	uint16_t getSize()                                                         // получение размера буфера
+	S getSize()                                                                 // РџРѕР»СѓС‡РµРЅРёРµ СЂР°Р·РјРµСЂР° Р±СѓС„С„РµСЂР°
 	{
 		return m_size;
 	}
 
-	bool full()                                                                // проверка на заполненность стека
+	bool full()                                                                 // РџСЂРѕРІРµСЂРєР° РЅР° Р·Р°РїРѕР»РЅРµРЅРЅРѕСЃС‚СЊ
 	{
 		return m_full;
 	}
 
-	void push(T data)                                                          // добавление элемента в буфер
+	void push(T data)                                                           // Р”РѕР±Р°РІР»РµРЅРёРµ РґР°РЅРЅС‹С…
 	{
 		m_array[m_index] = data;
 		if (m_index < m_size - 1)
@@ -287,63 +287,63 @@ public:
 		}
 	}
 
-	void clear()                                                               // очистка буфера
+	void clear()                                                                // РћС‡РёСЃС‚РєР° Р±СѓС„С„РµСЂР°
 	{
 		m_index = 0;
 		m_full = false;
 	}
 
-	double getAverage()                                                        // получение усредненного значения
+	double getAverage()                                                         // РџРѕР»СѓС‡РµРЅРёРµ СЃСЂРµРґРЅРµРіРѕ Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 	{
 		return averageValue(m_array, getIndex() + 1);
 	}
 
-	double getMedian()                                                         // получение медианного значения
+	double getMedian()                                                          // РџРѕР»СѓС‡РµРЅРёРµ РјРµРґРёР°РЅРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 	{
 		return  medianValue(m_array, getIndex() + 1);
 	}
 
-	double getFiltered(double (*referenceFcn)(T* array, uint16_t length), uint8_t maxDiffPercent)
-		                                                                       // получение отфильтрованного значения
+	double getFiltered(double (*referenceFcn)(T* array, S length), uint8_t maxDiffPercent)
+		                                                                        // РџРѕР»СѓС‡РµРЅРёРµ РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 	{
-		return(filterValue(m_array, getIndex() + 1, referenceFcn, maxDiffPercent));
+		return(filterValue<T, S>(m_array, getIndex() + 1, referenceFcn, maxDiffPercent));
 	}
 };
 //*****************************************************************************
 //*****************************************************************************
 
 //*****************************************************************************
-//********************* Двойной кольцевой буфер *******************************
-template <typename T>
+//********************* Р”РІРѕР№РЅРѕР№ РєРѕР»СЊС†РµРІРѕР№ Р±СѓС„С„РµСЂ ******************************
+template <typename T, typename Ss, typename Sc>
 class DoubleBuffer
 {
 
 private:
 
-	RingBuffer<T>* cashBuffer;
-	RingBuffer<T>* stackBuffer;
+	RingBuffer<T, Sc>* cashBuffer;
+	RingBuffer<T, Ss>* stackBuffer;
 
 public:
 
-	DoubleBuffer(uint16_t stack_size, uint16_t cash_size)                      // конструктор
+	DoubleBuffer(Ss stack_size, Sc cash_size)                                   // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	{
-		cashBuffer = new RingBuffer<T>(cash_size);
-		stackBuffer = new RingBuffer<T>(stack_size);
+		cashBuffer = new RingBuffer<T, Sc>(cash_size);
+		stackBuffer = new RingBuffer<T, Ss>(stack_size);
 	}
 
-	~DoubleBuffer()                                                            // деструктор
+	~DoubleBuffer()                                                             // Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 	{
 		delete cashBuffer;
 		delete stackBuffer;
 	}
 
-	DoubleBuffer(const DoubleBuffer& source)                                   // конструктор копирования
+	DoubleBuffer(const DoubleBuffer& source)                                    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 	{
 		cashBuffer = source.cashBuffer;
 		stackBuffer = source.stackBuffer;
 	}
 
-	DoubleBuffer& operator=(const DoubleBuffer& source)                        // перегрузка оператора =
+	DoubleBuffer& operator=(const DoubleBuffer& source)                         // РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° =
 	{
 		if (this == &source)
 			return *this;
@@ -352,27 +352,27 @@ public:
 		return *this;
 	}
 
-	T& operator[] (const uint16_t index)                                       // перегрузка оператора []
+	T& operator[] (const Ss index)                                              // РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° []
 	{
 		return stackBuffer[index];
 	}
 
-	uint16_t getIndex()                                                        // получение последнего записанного индекса в стеке
+	uint16_t getIndex()                                                         // РџРѕР»СѓС‡РµРЅРёРµ С‚РµРєСѓС‰РµРіРѕ РёРЅРґРµРєСЃР°
 	{
 		return stackBuffer->getIndex();
 	}
 
-	uint16_t getSize()                                                         // получение размера буфера
+	uint16_t getSize()                                                          // РџРѕР»СѓС‡РµРЅРёРµ СЂР°Р·РјРµСЂР°
 	{
 		return stackBuffer->m_size;
 	}
 
-	bool full()                                                                // проверка на заполненность стека
+	bool full()                                                                 // РџСЂРѕРІРµСЂРєР° РЅР° Р·Р°РїРѕР»РЅРµРЅРЅРѕСЃС‚СЊ
 	{
 		return stackBuffer->m_full();
 	}
 
-	void push(T data)                                                          // добавление элемента в буфер
+	void push(T data)                                                           // Р”РѕР±Р°РІР»РµРЅРёРµ РґР°РЅРЅС‹С…
 	{
 		cashBuffer->push(data);
 		if (cashBuffer->full())
@@ -382,24 +382,24 @@ public:
 		}
 	}
 
-	void clear()                                                               // очистка буфера
+	void clear()                                                                // РћС‡РёСЃС‚РєР°
 	{
 		cashBuffer->clear();
 		stackBuffer->clear();
 	}
 
-	double getAverage()                                                        // получение усредненного значения
+	double getAverage()                                                         // РџРѕР»СѓС‡РµРЅРёРµ СЃСЂРµРґРЅРµРіРѕ Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 	{
 		return stackBuffer->getAverage();
 	}
 
-	double getMedian()                                                         // получение медианного значения
+	double getMedian()                                                          // РџРѕР»СѓС‡РµРЅРёРµ РјРµРґРёР°РЅРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 	{
 		return  stackBuffer->getMedian();
 	}
 
-	double getFiltered(double (*referenceFcn)(T* array, uint16_t length), uint8_t maxDiffPercent)
-		                                                                       // получение отфильтрованного значения
+	double getFiltered(double (*referenceFcn)(T* array, Ss length), uint8_t maxDiffPercent)
+		                                                                        // РџРѕР»СѓС‡РµРЅРёРµ РѕС‚С„РёР»СЊС‚СЂРѕРІР°РЅРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 	{
 		return stackBuffer->getFiltered(referenceFcn, maxDiffPercent);
 	}
